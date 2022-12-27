@@ -1,0 +1,342 @@
+msis@msis:~$ git clone https://github.com/djgit17/FullStackApp1.git
+Cloning into 'FullStackApp1'...
+remote: Enumerating objects: 26, done.
+remote: Counting objects: 100% (26/26), done.
+remote: Compressing objects: 100% (22/22), done.
+remote: Total 26 (delta 3), reused 17 (delta 0), pack-reused 0
+Unpacking objects: 100% (26/26), 15.19 KiB | 1.69 MiB/s, done.
+msis@msis:~$ ls
+''$'\004'            FullStackApp1   remoting
+ agent.jar           IdeaProjects    s3-formation.yaml
+ aishwarya.js        lab-formation   simple_template.yaml
+ app.js              LDS             snap
+ aws                 Music           static.yaml
+ awscliv2.zip        mydir           storage
+ Desktop             mydir1          Templates
+'Desktop '           mydirect        tools
+ Documents           mygittest      'udo apt install openjdk-9-jre'
+ Downloads           mywebsite       Videos
+ eclipse-workspace   mywebsite22    'VirtualBox VMs'
+ files2.txt          phpmysql-app    workspace
+ files3.txt          Pictures
+ files.txt           Public
+msis@msis:~$ cd FullStackApp1/
+msis@msis:~/FullStackApp1$ ls
+config.php  docker-compose_updated.yml  Dockerfile_Web_App  test.php
+db          docker-compose.yml          index.php
+msis@msis:~/FullStackApp1$ sudo docker-compose up --build -f dockerer-compose_updated.yml -d
+[sudo] password for msis: 
+sudo: docker-compose: command not found
+msis@msis:~/FullStackApp1$ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 12.1M  100 12.1M    0     0  5567k      0  0:00:02  0:00:02 --:--:-- 9919k
+msis@msis:~/FullStackApp1$ sudo chmod +x /usr/local/bin/docker-compose
+msis@msis:~/FullStackApp1$ docker-compose --version
+docker-compose version 1.29.2, build 5becea4c
+msis@msis:~/FullStackApp1$ sudo docker-compose up --build -f dockerer-compose_updated.yml -d
+Builds, (re)creates, starts, and attaches to containers for a service.
+
+Unless they are already running, this command also starts any linked services.
+
+The `docker-compose up` command aggregates the output of each container. When
+the command exits, all containers are stopped. Running `docker-compose up -d`
+starts the containers in the background and leaves them running.
+
+If there are existing containers for a service, and the service's configuration
+or image was changed after the container's creation, `docker-compose up` picks
+up the changes by stopping and recreating the containers (preserving mounted
+volumes). To prevent Compose from picking up changes, use the `--no-recreate`
+flag.
+
+If you want to force Compose to stop and recreate all containers, use the
+`--force-recreate` flag.
+
+Usage: up [options] [--scale SERVICE=NUM...] [--] [SERVICE...]
+
+Options:
+    -d, --detach               Detached mode: Run containers in the background,
+                               print new container names. Incompatible with
+                               --abort-on-container-exit.
+    --no-color                 Produce monochrome output.
+    --quiet-pull               Pull without printing progress information
+    --no-deps                  Don't start linked services.
+    --force-recreate           Recreate containers even if their configuration
+                               and image haven't changed.
+    --always-recreate-deps     Recreate dependent containers.
+                               Incompatible with --no-recreate.
+    --no-recreate              If containers already exist, don't recreate
+                               them. Incompatible with --force-recreate and -V.
+    --no-build                 Don't build an image, even if it's missing.
+    --no-start                 Don't start the services after creating them.
+    --build                    Build images before starting containers.
+    --abort-on-container-exit  Stops all containers if any container was
+                               stopped. Incompatible with -d.
+    --attach-dependencies      Attach to dependent containers.
+    -t, --timeout TIMEOUT      Use this timeout in seconds for container
+                               shutdown when attached or when containers are
+                               already running. (default: 10)
+    -V, --renew-anon-volumes   Recreate anonymous volumes instead of retrieving
+                               data from the previous containers.
+    --remove-orphans           Remove containers for services not defined
+                               in the Compose file.
+    --exit-code-from SERVICE   Return the exit code of the selected service
+                               container. Implies --abort-on-container-exit.
+    --scale SERVICE=NUM        Scale SERVICE to NUM instances. Overrides the
+                               `scale` setting in the Compose file if present.
+    --no-log-prefix            Don't print prefix in logs.
+msis@msis:~/FullStackApp1$ sudo docker-compose -f docker-compose_updated.yml up --build -d
+Creating network "fullstackapp1_default" with the default driver
+Building www
+Sending build context to Docker daemon  237.1kB
+Step 1/5 : FROM php:apache
+apache: Pulling from library/php
+3f4ca61aafcd: Pull complete 
+460703cf6140: Pull complete 
+eba06349db87: Pull complete 
+9130a4183abd: Pull complete 
+fd60536a0833: Pull complete 
+52e54498bf19: Pull complete 
+9812d18c874f: Pull complete 
+172be8aff304: Pull complete 
+684cc1cd030c: Pull complete 
+bff3fe1fd721: Pull complete 
+bc71296f9ee2: Pull complete 
+fef8f07dcee5: Pull complete 
+17631c233cff: Pull complete 
+Digest: sha256:739420c858b1f447490c55971416298699678203353ba13e47e4e57b8318c94f
+Status: Downloaded newer image for php:apache
+ ---> 10ab6b046214
+Step 2/5 : RUN apt-get update -y
+ ---> Running in 4349add3a3e6
+Get:1 http://deb.debian.org/debian bullseye InRelease [116 kB]
+Get:2 http://deb.debian.org/debian-security bullseye-security InRelease [48.4 kB]
+Get:3 http://deb.debian.org/debian bullseye-updates InRelease [44.1 kB]
+Get:4 http://deb.debian.org/debian bullseye/main amd64 Packages [8183 kB]
+Get:5 http://deb.debian.org/debian-security bullseye-security/main amd64 Packages [210 kB]
+Get:6 http://deb.debian.org/debian bullseye-updates/main amd64 Packages [14.6 kB]
+Fetched 8616 kB in 3s (2978 kB/s)
+Reading package lists...
+Removing intermediate container 4349add3a3e6
+ ---> b96038161cca
+Step 3/5 : RUN docker-php-ext-install mysqli
+ ---> Running in 1650da02af9c
+Configuring for:
+PHP Api Version:         20220829
+Zend Module Api No:      20220829
+Zend Extension Api No:   420220829
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for a sed that does not truncate output... /bin/sed
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for cc... cc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether cc accepts -g... yes
+checking for cc option to accept ISO C89... none needed
+checking how to run the C preprocessor... cc -E
+checking for icc... no
+checking for suncc... no
+checking for system library directory... lib
+checking if compiler supports -Wl,-rpath,... yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+checking for PHP prefix... /usr/local
+checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20220829
+checking for PHP installed headers prefix... /usr/local/include/php
+checking if debug is enabled... no
+checking if zts is enabled... no
+checking for gawk... no
+checking for nawk... nawk
+checking if nawk is broken... no
+checking for MySQLi support... yes, shared
+checking for specified location of the MySQL UNIX socket... no
+checking for MySQL UNIX socket location... no
+checking for a sed that does not truncate output... /bin/sed
+checking for ld used by cc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for /usr/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking the maximum length of command line arguments... 1572864
+checking command to parse /usr/bin/nm -B output from cc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if cc supports -fno-rtti -fno-exceptions... no
+checking for cc option to produce PIC... -fPIC
+checking if cc PIC flag -fPIC works... yes
+checking if cc static flag -static works... yes
+checking if cc supports -c -o file.o... yes
+checking whether the cc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+
+creating libtool
+appending configuration tag "CXX" to libtool
+configure: patching config.h.in
+configure: creating ./config.status
+config.status: creating config.h
+/bin/bash /usr/src/php/ext/mysqli/libtool --mode=compile cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli.c -o mysqli.lo  -MMD -MF mysqli.dep -MT mysqli.lo
+mkdir .libs
+ cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli.c -MMD -MF mysqli.dep -MT mysqli.lo  -fPIC -DPIC -o .libs/mysqli.o
+/bin/bash /usr/src/php/ext/mysqli/libtool --mode=compile cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_api.c -o mysqli_api.lo  -MMD -MF mysqli_api.dep -MT mysqli_api.lo
+ cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_api.c -MMD -MF mysqli_api.dep -MT mysqli_api.lo  -fPIC -DPIC -o .libs/mysqli_api.o
+/bin/bash /usr/src/php/ext/mysqli/libtool --mode=compile cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_prop.c -o mysqli_prop.lo  -MMD -MF mysqli_prop.dep -MT mysqli_prop.lo
+ cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_prop.c -MMD -MF mysqli_prop.dep -MT mysqli_prop.lo  -fPIC -DPIC -o .libs/mysqli_prop.o
+/bin/bash /usr/src/php/ext/mysqli/libtool --mode=compile cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_nonapi.c -o mysqli_nonapi.lo  -MMD -MF mysqli_nonapi.dep -MT mysqli_nonapi.lo
+ cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_nonapi.c -MMD -MF mysqli_nonapi.dep -MT mysqli_nonapi.lo  -fPIC -DPIC -o .libs/mysqli_nonapi.o
+/bin/bash /usr/src/php/ext/mysqli/libtool --mode=compile cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_report.c -o mysqli_report.lo  -MMD -MF mysqli_report.dep -MT mysqli_report.lo
+ cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_report.c -MMD -MF mysqli_report.dep -MT mysqli_report.lo  -fPIC -DPIC -o .libs/mysqli_report.o
+/bin/bash /usr/src/php/ext/mysqli/libtool --mode=compile cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_driver.c -o mysqli_driver.lo  -MMD -MF mysqli_driver.dep -MT mysqli_driver.lo
+ cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_driver.c -MMD -MF mysqli_driver.dep -MT mysqli_driver.lo  -fPIC -DPIC -o .libs/mysqli_driver.o
+/bin/bash /usr/src/php/ext/mysqli/libtool --mode=compile cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_warning.c -o mysqli_warning.lo  -MMD -MF mysqli_warning.dep -MT mysqli_warning.lo
+ cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_warning.c -MMD -MF mysqli_warning.dep -MT mysqli_warning.lo  -fPIC -DPIC -o .libs/mysqli_warning.o
+/bin/bash /usr/src/php/ext/mysqli/libtool --mode=compile cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_exception.c -o mysqli_exception.lo  -MMD -MF mysqli_exception.dep -MT mysqli_exception.lo
+ cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_exception.c -MMD -MF mysqli_exception.dep -MT mysqli_exception.lo  -fPIC -DPIC -o .libs/mysqli_exception.o
+/bin/bash /usr/src/php/ext/mysqli/libtool --mode=compile cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_result_iterator.c -o mysqli_result_iterator.lo  -MMD -MF mysqli_result_iterator.dep -MT mysqli_result_iterator.lo
+ cc -I. -I/usr/src/php/ext/mysqli -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DZEND_COMPILE_DL_EXT=1 -c /usr/src/php/ext/mysqli/mysqli_result_iterator.c -MMD -MF mysqli_result_iterator.dep -MT mysqli_result_iterator.lo  -fPIC -DPIC -o .libs/mysqli_result_iterator.o
+/bin/bash /usr/src/php/ext/mysqli/libtool --mode=link cc -shared -I/usr/src/php/ext/mysqli/include -I/usr/src/php/ext/mysqli/main -I/usr/src/php/ext/mysqli -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE  -Wl,-O1 -pie  -o mysqli.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/src/php/ext/mysqli/modules  mysqli.lo mysqli_api.lo mysqli_prop.lo mysqli_nonapi.lo mysqli_report.lo mysqli_driver.lo mysqli_warning.lo mysqli_exception.lo mysqli_result_iterator.lo 
+cc -shared  .libs/mysqli.o .libs/mysqli_api.o .libs/mysqli_prop.o .libs/mysqli_nonapi.o .libs/mysqli_report.o .libs/mysqli_driver.o .libs/mysqli_warning.o .libs/mysqli_exception.o .libs/mysqli_result_iterator.o   -Wl,-O1 -Wl,-soname -Wl,mysqli.so -o .libs/mysqli.so
+creating mysqli.la
+(cd .libs && rm -f mysqli.la && ln -s ../mysqli.la mysqli.la)
+/bin/bash /usr/src/php/ext/mysqli/libtool --mode=install cp ./mysqli.la /usr/src/php/ext/mysqli/modules
+cp ./.libs/mysqli.so /usr/src/php/ext/mysqli/modules/mysqli.so
+cp ./.libs/mysqli.lai /usr/src/php/ext/mysqli/modules/mysqli.la
+PATH="$PATH:/sbin" ldconfig -n /usr/src/php/ext/mysqli/modules
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/src/php/ext/mysqli/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+Build complete.
+Don't forget to run 'make test'.
+
++ strip --strip-all modules/mysqli.so
+Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20220829/
+Installing header files:          /usr/local/include/php/
+find . -name \*.gcno -o -name \*.gcda | xargs rm -f
+find . -name \*.lo -o -name \*.o -o -name \*.dep | xargs rm -f
+find . -name \*.la -o -name \*.a | xargs rm -f
+find . -name \*.so | xargs rm -f
+find . -name .libs -a -type d|xargs rm -rf
+rm -f libphp.la      modules/* libs/*
+rm -f ext/opcache/jit/zend_jit_x86.c
+rm -f ext/opcache/jit/zend_jit_arm64.c
+rm -f ext/opcache/minilua
+Removing intermediate container 1650da02af9c
+ ---> 2fa44e8dbbc5
+Step 4/5 : COPY . /var/www/html/
+ ---> 7cb7afb9f023
+Step 5/5 : EXPOSE 80
+ ---> Running in 02b7d20cd277
+Removing intermediate container 02b7d20cd277
+ ---> af34aae248e1
+Successfully built af34aae248e1
+Successfully tagged fullstackapp1_www:latest
+Pulling db (mysql:latest)...
+latest: Pulling from library/mysql
+0ed027b72ddc: Pull complete
+0296159747f1: Pull complete
+3d2f9b664bd3: Pull complete
+df6519f81c26: Pull complete
+36bb5e56d458: Pull complete
+054e8fde88d0: Pull complete
+f2b494c50c7f: Pull complete
+132bc0d471b8: Pull complete
+135ec7033a05: Pull complete
+5961f0272472: Pull complete
+75b5f7a3d3a4: Pull complete
+Digest: sha256:3d7ae561cf6095f6aca8eb7830e1d14734227b1fb4748092f2be2cfbccf7d614
+Status: Downloaded newer image for mysql:latest
+Pulling phpmyadmin (phpmyadmin/phpmyadmin:)...
+latest: Pulling from phpmyadmin/phpmyadmin
+214ca5fb9032: Pull complete
+cd813a1b2cb8: Pull complete
+63cf7574573d: Pull complete
+54c27146d16e: Pull complete
+078f4450f949: Pull complete
+5f145e355bc4: Pull complete
+fdc797cb9eea: Pull complete
+af45e7153a31: Pull complete
+b546fbaf263b: Pull complete
+16dd2cabbcd2: Pull complete
+30a426b49280: Pull complete
+c94e73d5f13e: Pull complete
+2f5a3464a278: Pull complete
+a4f9f723c297: Pull complete
+5b04d16a8086: Pull complete
+2a3d1fa22772: Pull complete
+ef56affc4552: Pull complete
+9b9b44731108: Pull complete
+Digest: sha256:ae6dadd9cf3c158e42937788f7255fa820ea3daef0349226d8d43f32e76535e1
+Status: Downloaded newer image for phpmyadmin/phpmyadmin:latest
+Creating fullstackapp1_phpmyadmin_1 ... done
+Creating www                        ... done
+Creating db                         ... done
+msis@msis:~/FullStackApp1$ sudo docker ps
+CONTAINER ID   IMAGE                   COMMAND                  CREATED          STATUS          PORTS                                                                          NAMES
+d555543ad584   fullstackapp1_www       "docker-php-entrypoi…"   27 seconds ago   Up 19 seconds   0.0.0.0:443->443/tcp, :::443->443/tcp, 0.0.0.0:3000->80/tcp, :::3000->80/tcp   www
+85d837a8843c   phpmyadmin/phpmyadmin   "/docker-entrypoint.…"   27 seconds ago   Up 19 seconds   0.0.0.0:8001->80/tcp, :::8001->80/tcp                                          fullstackapp1_phpmyadmin_1
+41349c56db81   mysql:latest            "docker-entrypoint.s…"   27 seconds ago   Up 19 seconds   3306/tcp, 33060/tcp                                                            db
+msis@msis:~/FullStackApp1$ docker images
+WARNING: Support for the legacy ~/.dockercfg configuration file and file-format is deprecated and will be removed in an upcoming release
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/images/json": dial unix /var/run/docker.sock: connect: permission denied
+msis@msis:~/FullStackApp1$ sudo docker images
+REPOSITORY              TAG       IMAGE ID       CREATED         SIZE
+fullstackapp1_www       latest    af34aae248e1   4 minutes ago   478MB
+php                     apache    10ab6b046214   6 days ago      459MB
+mysql                   latest    7484689f290f   2 weeks ago     538MB
+nodejs                  v1        744d458b0483   2 weeks ago     916MB
+nayanamn/myrepo         latest    744d458b0483   2 weeks ago     916MB
+nayanamn/nodejsapp      v1        744d458b0483   2 weeks ago     916MB
+node                    14        c08c80352dd3   2 weeks ago     916MB
+node1                   latest    e16629a7fe65   3 weeks ago     171MB
+node                    alpine    9b78801b4058   3 weeks ago     171MB
+alpine                  latest    49176f190c7e   4 weeks ago     7.05MB
+phpmyadmin/phpmyadmin   latest    4a4023c7e22a   7 months ago    510MB
+msis@msis:~/FullStackApp1$ 
+
+
